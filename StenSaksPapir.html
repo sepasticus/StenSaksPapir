@@ -8,9 +8,53 @@
   </head>
 <body>
   <script>
+//De specifikke sætninger
+const stenSten = "Sten. Uafgjort.";
+const stenSaks = "Saks... Du vandt.";
+const stenPapir = "Papir! Du tabte.";
 
-function getComputerChoice(){
-  return.mathRandom();
+const saksSten = "Sten! Du tabte.";
+const saksSaks = "Saks. Uafgjort.";
+const saksPapir = "Papir... Du vandt.";
+
+const papirSten = "Sten... Du vandt.";
+const papirSaks = "Saks! Du tabte.";
+const papirPapir = "Papir. Uafgjort.";
+
+//Computerens svar
+function computerValg() { 
+  return ['sten', 'saks', 'papir'][Math.floor(Math.random()*3)].toLowerCase();
+}
+//Spillerens svar
+let spillerValg = prompt('Ah, a new challenger. Sten, saks eller papir?');
+
+//Koden
+//Hvis spilleren skriver sten
+  if 
+(spillerValg == 'sten' && computerValg() == 'sten'){
+  alert(stenSten);
+} else if (spillerValg == 'sten' && computerValg() == 'saks'){
+  alert(stenSaks);
+} else if (spillerValg == 'sten' && computerValg() == 'papir'){
+  alert(stenPapir);
+//Hvis spilleren skriver saks
+} else if 
+(spillerValg == 'saks' && computerValg() == 'sten'){
+  alert(saksSten);
+} else if (spillerValg == 'saks' && computerValg() == 'saks'){
+  alert(saksSaks);
+} else if (spillerValg == 'saks' && computerValg() == 'papir'){
+  alert(saksPapir);
+//Hvis spilleren skriver papir
+} else if 
+(spillerValg == 'papir' && computerValg() == 'sten'){
+  alert(papirSten);
+} else if (spillerValg == 'papir' && computerValg() == 'saks'){
+  alert(papirSaks);
+} else if (spillerValg == 'papir' && computerValg() == 'papir'){
+  alert(papirPapir);
+} else {
+  alert("Det er jo ikke et rigtigt svar, fjollegolle. Prøv igen");
 }
 
 

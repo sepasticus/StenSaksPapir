@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link rel="shortcut icon" href="data:image/x-icon;," 
+    type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+  </head>
+<body>
+  <script>
+//Spillerens svar
+let spillerValg = prompt('Ah, a new challenger. Sten, saks eller papir?');
+
+const rules = [
+  { player: 'sten', computer: 'sten',   winner: 'Sten. Uafgjort' },
+  { player: 'sten', computer: 'saks',   winner: 'Saks. Du vinder' },
+  { player: 'sten', computer: 'papir',  winner: 'Papir. Jeg vinder' },
+  
+  { player: 'saks', computer: 'sten',   winner: 'Sten. Jeg vinder' },
+  { player: 'saks', computer: 'saks',   winner: 'Saks. Uafgjort' },
+  { player: 'saks', computer: 'papir',  winner: 'Papir. Du vinder' },
+
+  { player: 'papir', computer: 'sten',  winner: 'Sten. Du vinder' },
+  { player: 'papir', computer: 'saks',  winner: 'Saks. Jeg vinder' },
+  { player: 'papir', computer: 'papir', winner: 'Papir. Uafgjort' },
+]
+
+//Computerens svar
+function computerValg() { 
+  return ['sten', 'saks', 'papir'][Math.floor(Math.random()*3)].toLowerCase();
+}
+
+//Computerens svar
+const computerensValg = computerValg()
+
+for (let rule of rules) {
+  if (rule.player === spillerValg && rule.computer === computerensValg) {
+    alert(rule.winner);
+    break;  
+    }
+}
+alert("Det er jo ikke et rigtigt svar, fjollegolle. Prøv igen");
+
+
+
+  </script>
+</body>
+</html>
