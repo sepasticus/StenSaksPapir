@@ -11,6 +11,14 @@
 //Spillerens svar
 let spillerValg = prompt('Ah, a new challenger. Sten, saks eller papir?');
 
+//Computerens svar
+function computerValg() { 
+  return ['sten', 'saks', 'papir'][Math.floor(Math.random()*3)].toLowerCase();
+}
+    //Computerens svar - vigtigt for koden (skal sætte mig mere ind i hvorfor)
+const computerensValg = computerValg()
+
+//Logikken
 const rules = [
   { player: 'sten', computer: 'sten',   winner: 'Sten. Uafgjort' },
   { player: 'sten', computer: 'saks',   winner: 'Saks. Du vinder' },
@@ -25,21 +33,21 @@ const rules = [
   { player: 'papir', computer: 'papir', winner: 'Papir. Uafgjort' },
 ]
 
-//Computerens svar
-function computerValg() { 
-  return ['sten', 'saks', 'papir'][Math.floor(Math.random()*3)].toLowerCase();
-}
-
-//Computerens svar
-const computerensValg = computerValg()
-
+//Koden
+let foundRule
 for (let rule of rules) {
   if (rule.player === spillerValg && rule.computer === computerensValg) {
-    alert(rule.winner);
+    foundRule = rule
     break;  
-    }
+  }
 }
-alert("Det er jo ikke et rigtigt svar, fjollegolle. Prøv igen");
+
+//If-else statementet nødvendigt for at lave alerten
+if (foundRule) {
+    alert(foundRule.winner)
+} else {
+    alert("Det er jo ikke et rigtigt svar, fjollegolle. Prøv igen");
+}
 
 
 
