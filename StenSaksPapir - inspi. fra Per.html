@@ -8,48 +8,64 @@
   </head>
 <body>
   <script>
-//Spillerens svar
-let spillerValg = prompt('Ah, a new challenger. Sten, saks eller papir?');
 
-//Computerens svar
-function computerValg() { 
-  return ['sten', 'saks', 'papir'][Math.floor(Math.random()*3)].toLowerCase();
-}
-    //Computerens svar - vigtigt for koden (skal sætte mig mere ind i hvorfor)
-const computerensValg = computerValg()
+//Scoreboard
+let spillerSejr = 0;
+let computerSejr = 0;
 
 //Logikken
-const rules = [
-  { player: 'sten', computer: 'sten',   winner: 'Sten. Uafgjort' },
-  { player: 'sten', computer: 'saks',   winner: 'Saks. Du vinder' },
-  { player: 'sten', computer: 'papir',  winner: 'Papir. Jeg vinder' },
+const possibleOutcomes = [
+  {player: 'sten',  computer: 'sten',   winner: 'Sten. Uafgjort'    },
+  {player: 'sten',  computer: 'saks',   winner: 'Saks. Du vinder'   },
+  {player: 'sten',  computer: 'papir',  winner: 'Papir. COM vinder' },
   
-  { player: 'saks', computer: 'sten',   winner: 'Sten. Jeg vinder' },
-  { player: 'saks', computer: 'saks',   winner: 'Saks. Uafgjort' },
-  { player: 'saks', computer: 'papir',  winner: 'Papir. Du vinder' },
+  {player: 'saks',  computer: 'sten',   winner: 'Sten. COM vinder', },
+  {player: 'saks',  computer: 'saks',   winner: 'Saks. Uafgjort',   },
+  {player: 'saks',  computer: 'papir',  winner: 'Papir. Du vinder', },
 
-  { player: 'papir', computer: 'sten',  winner: 'Sten. Du vinder' },
-  { player: 'papir', computer: 'saks',  winner: 'Saks. Jeg vinder' },
-  { player: 'papir', computer: 'papir', winner: 'Papir. Uafgjort' },
+  {player: 'papir', computer: 'sten',   winner: 'Sten. Du vinder',  },
+  {player: 'papir', computer: 'saks',   winner: 'Saks. COM vinder', },
+  {player: 'papir', computer: 'papir',  winner: 'Papir. Uafgjort',  },
 ]
 
-//Koden
-let foundRule
-for (let rule of rules) {
-  if (rule.player === spillerValg && rule.computer === computerensValg) {
-    foundRule = rule
-    break;  
-  }
+//Loop hvis hverken spiller eller COM har opnået 3 point
+while (spillerSejr < 3 && computerSejr < 3){
+    //Spillerens svar er en prompt
+    let spillerValg = prompt('Sten, saks eller papir?');
+
+    //Computerens svar er tilfældigt
+    let computerValg = ['sten', 'saks', 'papir'][Math.floor(Math.random()*3)].toLowerCase();
+
+    //Koden
+    let specificOutcome
+    for (let outcome of possibleOutcomes) {
+    if (outcome.player === spillerValg && outcome.computer === computerValg) {
+        specificOutcome = outcome
+        break;  
+    } 
+    }
+    //Alert og point-increment hvis enten spiller eller COM vinder
+    if (specificOutcome) {
+        alert(specificOutcome.winner);
+        if (specificOutcome.winner.includes('Du vinder')){
+            spillerSejr++;
+        } else if (specificOutcome.winner.includes('COM vinder')){
+            computerSejr++;
+        }
+    //Alert hvis man indtaster forkert
+    } else {
+        alert("Det er jo ikke et rigtigt svar, fjollegolle. Prøv igen");
+    }
+    //Det visuelle scoreboard i konsollen
+    console.log(`Spiller: ${spillerSejr} - Computer: ${computerSejr}`);
 }
 
-//If-else statementet nødvendigt for at lave alerten
-if (foundRule) {
-    alert(foundRule.winner)
-} else {
-    alert("Det er jo ikke et rigtigt svar, fjollegolle. Prøv igen");
+//Hvis spilleren eller COM når 3 point bliver der vist en tekst
+if (spillerSejr === 3){
+    alert("Tillykke, du har sejret");
+} else if (computerSejr === 3){
+    alert("Øv, du har tabt")
 }
-
-
 
   </script>
 </body>
