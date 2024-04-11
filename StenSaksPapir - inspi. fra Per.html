@@ -36,7 +36,7 @@ while (spillerSejr < 3 && computerSejr < 3){
     //Computerens svar er tilfældigt
     let computerValg = ['sten', 'saks', 'papir'][Math.floor(Math.random()*3)].toLowerCase();
 
-    //Koden
+    //I arrayen: hvis spiller fx får 'sten' og computer får saks, er udfaldet udfaldet(outcome).winner  
     let specificOutcome
     for (let outcome of possibleOutcomes) {
     if (outcome.player === spillerValg && outcome.computer === computerValg) {
